@@ -1,6 +1,6 @@
-package app;
+package com.example.simple;
 
-class Simple {
+class App {
     public static void main(String[] args) {
         System.out.println("Hello Java");
 
@@ -8,5 +8,8 @@ class Simple {
         String name = System.console().readLine();
 
         System.out.println("You entered string " + name);
+        
+        var calc = new Calculator();
+        System.out.println(calc.add(40, 2));
     }
 }
