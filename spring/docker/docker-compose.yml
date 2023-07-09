@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  spring-db:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - .ENV
+    ports:
+      - 5432:5432

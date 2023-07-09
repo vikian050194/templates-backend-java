@@ -11,18 +11,18 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Spring Boot 2 API example", version = "2.0", description = "API description"))
+@OpenAPIDefinition(info = @Info(title = "Spring Boot 2 API example", version = "1.0", description = "API description"))
 public class App {
 
     @Autowired
     SubjectRepository subjectRepository;
-    
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
-    
+
     @EventListener(ApplicationReadyEvent.class)
-    public void seed(){
+    public void seed() {
         subjectRepository.save(new Subject("foo"));
         subjectRepository.save(new Subject("bar"));
         subjectRepository.save(new Subject("baz"));

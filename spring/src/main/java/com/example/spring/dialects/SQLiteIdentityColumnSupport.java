@@ -1,4 +1,4 @@
-package com.example.spring.dialect;
+package com.example.spring.dialects;
 
 import org.hibernate.MappingException;
 import org.hibernate.dialect.identity.IdentityColumnSupportImpl;

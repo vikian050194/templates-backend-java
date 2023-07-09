@@ -1,9 +1,7 @@
-package com.example.spring.config;
+package com.example.spring.configs;
 
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +16,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.example.spring.repositories")
 @PropertySource("persistence-h2.properties")
-// @PropertySource("persistence-sqlite.properties")
+//@PropertySource("persistence-sqlite.properties")
+//@PropertySource("persistence-postgesql.properties")
 public class DbConfig {
 
     @Autowired
@@ -28,9 +27,9 @@ public class DbConfig {
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("driverClassName"));
-        dataSource.setUrl(env.getProperty("url"));
-        dataSource.setUsername(env.getProperty("user"));
-        dataSource.setPassword(env.getProperty("password"));
+        dataSource.setUrl(env.getProperty("connection.url"));
+        dataSource.setUsername(env.getProperty("connection.username"));
+        dataSource.setPassword(env.getProperty("connection.password"));
         return dataSource;
     }
 
@@ -38,7 +37,7 @@ public class DbConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.example.spring.models" });
+        em.setPackagesToScan(new String[]{"com.example.spring.models"});
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(additionalProperties());
         return em;
